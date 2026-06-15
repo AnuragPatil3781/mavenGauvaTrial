@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/<username>/MyMavenGuavaApp.git'
+                git 'https://github.com/AnuragPatil3781/mavenGauvaTrial.git'
             }
         }
 
