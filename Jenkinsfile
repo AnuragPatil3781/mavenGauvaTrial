@@ -6,13 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                git 'https://github.com/AnuragPatil3781/mavenGauvaTrial.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'mvn clean install'
@@ -27,7 +20,7 @@ pipeline {
 
         stage('Run Application') {
             steps {
-                sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
+                sh 'mvn exec:java -Dexec.mainClass=com.example.App'
             }
         }
 
@@ -35,6 +28,15 @@ pipeline {
             steps {
                 sh 'cat destination.txt'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build successful!'
+        }
+        failure {
+            echo 'Build failed!'
         }
     }
 }
